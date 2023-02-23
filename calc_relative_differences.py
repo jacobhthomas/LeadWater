@@ -29,7 +29,7 @@ for i in range(len(draw_cols)-1):
 relative_differences_df.drop(columns=['X11th.Draw'], inplace=True)
 
 # rename columns 
-relative_differences_df = relative_differences_df.rename(columns={'X1st.Draw': 'x1x2','X2nd Draw': 'x2x3','X3rd.Draw': 'x3x4','X4th.Draw': 'x4x5','X5th.Draw': 'x5x6',
+relative_differences_df = relative_differences_df.rename(columns={'X1st.Draw': 'x1x2','X2nd.Draw': 'x2x3','X3rd.Draw': 'x3x4','X4th.Draw': 'x4x5','X5th.Draw': 'x5x6',
                                         'X6th.Draw': 'x6x7','X7th.Draw': 'x7x8','X8th.Draw': 'x8x9','X9th.Draw': 'x9x10','X10th.Draw': 'x10x11',})
 
 # convert to date-time format
