@@ -35,4 +35,7 @@ relative_differences_df = relative_differences_df.rename(columns={'X1st.Draw': '
 # convert to date-time format
 relative_differences_df['Date.Sampled'] = pd.to_datetime(relative_differences_df['Date.Sampled'])
 
+# df['Date.Sampled'] = pd.to_datetime(df['Date.Sampled'])
+relative_differences_df.sort_values(by='Date.Sampled', inplace=True)
+
 relative_differences_df.to_csv('relative_differences_sequential_data.csv')
