@@ -42,8 +42,6 @@ def find_coordinates(addresses):
         writer = csv.writer(file)
      
         locator = Nominatim (user_agent = 'my_request')
-        # lst_longs = []
-        # lst_lats = []
 
         for i, address in enumerate(addresses): 
 
@@ -60,15 +58,6 @@ def find_coordinates(addresses):
             
             writer.writerow([long, lat])
 
-    #         if getLoc: 
-    #             lst_longs.append(getLoc.longitude)
-    #             lst_lats.append(getLoc.latitude)
-    #         else: 
-    #             lst_longs.append(np.NaN)
-    #             lst_lats.append(np.NaN)
-
-    # return lst_longs, lst_lats
-
 # -----------------# 
 
 crs = {'init': 'epsg:4326'}
@@ -77,19 +66,12 @@ random.seed(1827)
 df = pd.read_csv('datasets\RelativeDifferenceClusters.csv')
 df = df[['Address']]
 
-df.drop(index=df.index[:1032], axis=0, inplace=True)
-
-# max = 5 clusters 
-# print(df.describe())
-
 # clean the addresses attribute 
 df['Address'] = df['Address'].apply(clean_addresses)
 
-# print(df.head)
 
 # compute coordinates for each instance 
-# df['longitude'], df['latitude'] = find_coordinates(df['Address'].values)
-find_coordinates(df['Address'].values)
+# find_coordinates(df['Address'].values)
 
 # drop any data instances we couldn't find coordinates for 
 # df.dropna(inplace=True)
