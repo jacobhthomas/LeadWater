@@ -1,7 +1,5 @@
 import pandas as pd 
 import random
-import numpy as np
-import geopandas
 import csv
 import matplotlib.pyplot as plt
 from geopy.geocoders import Nominatim
@@ -72,11 +70,6 @@ df['Address'] = df['Address'].apply(clean_addresses)
 
 # compute coordinates for each instance 
 # find_coordinates(df['Address'].values)
-
-# drop any data instances we couldn't find coordinates for 
-# df.dropna(inplace=True)
-
-# df.to_csv('ClustersLongLat.csv')
 
 
 # # create new geo dataframe 

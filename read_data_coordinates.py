@@ -6,7 +6,11 @@ import numpy as np
 random.seed(1827)
 df = pd.read_csv('datasets\RelativeDifferenceClusters.csv')
 df = df[['Date.Sampled', 'Address', 'HCluster']]
+df2 = pd.read_csv('datasets\cleaned_sequential.csv')
+df2 = df2[["X1st.Draw","X2nd.Draw","X3rd.Draw","X4th.Draw","X5th.Draw","X6th.Draw","X7th.Draw","X8th.Draw","X9th.Draw","X10th.Draw","X11th.Draw"]]
 
+df = pd.concat([df, df2], axis=1, join='inner')
+print(df)
 # clean the addresses attribute 
 df['Address'] = df['Address'].apply(clean_addresses)
 
@@ -26,4 +30,4 @@ df['longitude'].replace('', np.nan, inplace=True)
 df['latitude'].replace('', np.nan, inplace=True)
 df = df.dropna()
 
-df.to_csv('ClusterCoordinates.csv')
+df.to_csv('ClusterCoordinatesSeqDraws.csv')
