@@ -37,7 +37,7 @@ def clean_addresses(address):
 # find long, lat coordinates for data addresses 
 def find_coordinates(addresses): 
 
-    with open('LongLats.txt', 'w', newline='\n') as file: 
+    with open('LongLats2.txt', 'w', newline='\n') as file: 
         
         writer = csv.writer(file)
      
@@ -75,13 +75,17 @@ crs = {'init': 'epsg:4326'}
 random.seed(1827)
 
 df = pd.read_csv('datasets\RelativeDifferenceClusters.csv')
-df = df[['Date.Sampled', 'Address', 'HCluster']]
-df = df.head(10)
+df = df[['Address']]
+
+df.drop(index=df.index[:1032], axis=0, inplace=True)
+
 # max = 5 clusters 
 # print(df.describe())
 
 # clean the addresses attribute 
 df['Address'] = df['Address'].apply(clean_addresses)
+
+# print(df.head)
 
 # compute coordinates for each instance 
 # df['longitude'], df['latitude'] = find_coordinates(df['Address'].values)
