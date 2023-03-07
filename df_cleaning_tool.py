@@ -1,5 +1,8 @@
 import numpy as np
 import pandas as pd
+from argparse import ArgumentParser
+import os.path
+
 
 
 def df_cleaned(df):
@@ -16,3 +19,27 @@ def df_cleaned(df):
     for i in range(len(draw_cols)):
         df = df[df[draw_cols[i]].notnull()]
     return df
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Make barchart from csv.')
+    parser.add_argument('-d', '--debug', help='Debugging output', action='store_true')
+    parser.add_argument('csvfile', type=argparse.FileType('r'), help='Input csv file')
+    args = parser.parse_args()
+
+    print('main(): type(args.csvfile)) = {}'.format(args.csvfile))
+    print('')
+
+    ### This works 
+    foo_df = pd.read_csv(args.csvfile)
+
+    print(foo_df.describe())
+    print('')
+    print(foo_df.head(5))
+    print('')
+
+if __name__ == '__main__':
+    main()
+
+
+
