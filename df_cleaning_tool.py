@@ -2,10 +2,11 @@ import numpy as np
 import pandas as pd
 from argparse import ArgumentParser
 import os.path
-
+import argparse
 
 
 def df_cleaned(df):
+    df = pd.read_csv(df)
     print(df.shape)
     df = df.drop(0) 
     df = df.drop("Index",axis=1)
