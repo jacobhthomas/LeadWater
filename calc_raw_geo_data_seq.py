@@ -13,8 +13,6 @@ def get_zipcode(df, geolocator, lat_field, lon_field):
 
 df = pd.read_csv('datasets/ClusterCoordinatesSeqDraws.csv')
 
-# # df['median'] = df.filter(like='Draw').apply(lambda x: x.median(), axis = 1)
-
 locator = Nominatim (user_agent = 'my_request', timeout=3) 
 
 df['place_info'] = df.apply(get_zipcode, axis=1, geolocator=locator, lat_field='latitude', lon_field='longitude')
