@@ -30,4 +30,5 @@ df['longitude'].replace('', np.nan, inplace=True)
 df['latitude'].replace('', np.nan, inplace=True)
 df = df.dropna()
 
+# DF: adds the cluster coordinates to the sequential data, but the clusters are based on the relative differences. 
 df.to_csv('ClusterCoordinatesSeqDraws.csv')
