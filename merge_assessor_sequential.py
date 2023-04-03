@@ -15,7 +15,7 @@ df['Address'] = df['Address'].apply(str.upper)
 
 assessor_df = pd.read_csv('datasets/assessor.csv')
 assessor_df.drop(columns=set(assessor_df.columns).difference(set(['Property Index Number','Property Address', 'Township Code', 'Neighborhood Code','Sale Price', 'Property Zip Code', 
-                           'Municipality FIPS Code', 'Longitude', 'Latitude', 'Tract Median Income'])), inplace=True)
+                           'Age', 'Longitude', 'Latitude', 'Tract Median Income'])), inplace=True)
        
 assessor_df.rename(columns={'Property Index Number': 'PIN', 'Property Address': 'Address', 'Property Zip Code': 'ZIP', 
                             'Municipality FIPS code': 'FIPS'}, inplace=True)
