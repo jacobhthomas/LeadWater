@@ -37,6 +37,7 @@ def one_side_test_low(ppb_threshold, df):
     # x = sum of quantiles of points of interest
     n = len(df_above_thresh.index)
     x = sum(df_above_thresh['quantile'])
+    print(ppb_threshold, n)
 
     # return test statistic 
     return IrwinHallCDF(n=n, x=x, approx="Normal")
@@ -46,6 +47,7 @@ def one_side_test_low(ppb_threshold, df):
 def one_side_test_high(ppb_threshold, df): 
     
     df_above_thresh=df[df['avg']<=ppb_threshold]
+    
 
     # n = number of points of interest 
     # x = sum of quantiles of points of interest
@@ -69,13 +71,30 @@ nQuantiles = len(df.index)
 df = df[['Tract Median Income', 'avg']]
 df.sort_values(by=['Tract Median Income'], inplace=True)
 
+
+
+# df14 = df[df['avg'] < 15]
+# df14 = df14[df14['avg'] >= 14]
+# df15 = df[df['avg'] < 16]
+# df15 = df15[df15['avg'] >= 15]
+# df16 = df[df['avg'] < 17]
+# df16 = df16[df16['avg'] >= 16]
+# df17 = df[df['avg'] < 18]
+# df17 = df17[df17['avg'] >= 17]
+# print(df14, df15, df16, df17)
+
+# plt.scatter(df14['Tract Median Income'], df14['avg'], c = 'r')
+# plt.scatter(df15['Tract Median Income'], df15['avg'], c = 'black')
+# plt.scatter(df16['Tract Median Income'], df16['avg'], c = 'g')
+# plt.scatter(df17['Tract Median Income'], df17['avg'], c = 'blue')
+# # plt.legend()
+# plt.show() 
+
 # calculate quantiles 
 quantiles = np.linspace(float(1/(2*nQuantiles)), 1-float(1/(2*nQuantiles)), nQuantiles)
 df['quantile'] = quantiles
 
-print(df)
-
-thresholds = [x for x in range(5,21)]
+thresholds = [x for x in range(5,25)]
 
 one_side_low = [] 
 one_side_high = [] 
@@ -86,20 +105,36 @@ for ppb in thresholds:
 print(one_side_low)
 print(one_side_high)
 
+# p_vals_scaled = [np.log(x) for x in one_side_low]
+
 plt.scatter(thresholds, one_side_low, s=13)
 plt.title('One-Sided Test Statistic: Irwin-Hall Distribution')
 plt.xlabel('ppb Threshold')
-plt.ylabel('p-value')
+plt.ylabel('log(p-value)')
 plt.grid(True)
 plt.axhline(0.05, c='r')
 plt.xticks(thresholds)
-plt.yticks(np.arange(0, max(one_side_low)+.1, .1))
+plt.yscale("log")
 plt.show() 
 
+# plot for math newbies
+plt.scatter(thresholds, one_side_low, s=20)
+plt.title('Irwin-Hall Distribution Test Statistic')
+plt.xlabel('lead level threshold')
+plt.ylabel('statistical significance')
+plt.grid(True)
+plt.axhline(0.05, c='r')
+plt.xticks(thresholds)
+plt.yscale("log")
+plt.show() 
+
+
+
+
 # print(df_tests)
-# # ds = pd.Series([run_test(15,df, nQuantiles) for _ in range(3)])
-# df_tests.boxplot()
-# plt.title('One-Sided Test Statistic: Irwin-Hall Distribution')
-# plt.ylabel('p-value')
-# plt.xlabel('ppb Threshold')
-# plt.show()
+# # # ds = pd.Series([run_test(15,df, nQuantiles) for _ in range(3)])
+# # df_tests.boxplot()
+# # plt.title('One-Sided Test Statistic: Irwin-Hall Distribution')
+# # plt.ylabel('p-value')
+# # plt.xlabel('ppb Threshold')
+# # plt.show()

@@ -15,7 +15,7 @@ q66 = income.quantile(.66)
 
 df['Tract Median Income'] = df['Tract Median Income'].apply(lambda x: round(x / 10000.0) * 10000.0)
 
-df['avg'] = df.filter(like='Draw').apply(lambda x: x.mean(), axis=1)
+df['avg'] = df.filter(like='Draw').apply(lambda x: x.mean(), axis=5)
 
 # min_avg = df['avg'].min() 
 # max_avg = df['avg'].max() 
