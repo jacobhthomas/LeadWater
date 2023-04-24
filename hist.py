@@ -1,7 +1,8 @@
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt 
-import seaborn as sns 
+import seaborn as sns
+
 
 
 df = pd.read_csv('datasets/assessorSequential.csv')
@@ -69,7 +70,7 @@ plt.yticks(size = 8)
 plt.ylabel('Proportion')
 plt.legend(names, loc='upper right')
 
-plt.show() 
+plt.savefig("prop_plot.png")
 
 cross_tab.plot(kind='bar', stacked=True, color=colors, label=names, alpha = .6, figsize=(10,6))
 plt.title('Frequency of Average Lead Intervals by ZIP Code')
@@ -78,49 +79,49 @@ plt.yticks(size = 8)
 plt.ylabel('Frequency')
 plt.legend(names, loc='upper right')
 
-plt.show() 
+plt.savefig("freq_plot.png")
 
 # --------- Sale Price --------- # 
-# df = df[df['Sale Price'].notna()]
-# df['Sale Price'] = df['Sale Price'].apply(lambda x: round(x / 10000.0) * 10000.0)
+df = df[df['Sale Price'].notna()]
+df['Sale Price'] = df['Sale Price'].apply(lambda x: round(x / 10000.0) * 10000.0)
 
-# cross_tab_prop = pd.crosstab(index=df['Sale Price'], columns=df['interval'], normalize='index')
-# cross_tab =  pd.crosstab(index=df['Sale Price'], columns=df['interval']) 
-# print(cross_tab)
-
-
-# cross_tab_prop.plot(kind='bar', stacked=True, color=colors, label=names, alpha = .6, figsize=(10,6))
-# plt.title('Proportion of Average Lead Intervals by ZIP Code')
-# plt.xticks(size=7)
-# plt.yticks(size = 8)
-# plt.ylabel('Proportion')
-# plt.legend(names, loc='upper right')
-
-# plt.show() 
-
-
-df = df[df['Tract Median Income'].notna()]
-df['Tract Median Income'] = df['Tract Median Income'].apply(lambda x: round(x / 10000.0) * 10000.0)
-
-cross_tab_prop = pd.crosstab(index=df['Tract Median Income'], columns=df['interval'], normalize='index')
-cross_tab =  pd.crosstab(index=df['Tract Median Income'], columns=df['interval']) 
+cross_tab_prop = pd.crosstab(index=df['Sale Price'], columns=df['interval'], normalize='index')
+cross_tab =  pd.crosstab(index=df['Sale Price'], columns=df['interval']) 
 print(cross_tab)
 
 
 cross_tab_prop.plot(kind='bar', stacked=True, color=colors, label=names, alpha = .6, figsize=(10,6))
-plt.title('Proportion of Average Lead Intervals by Tract Median Income')
+plt.title('Proportion of Average Lead Intervals by ZIP Code')
 plt.xticks(size=7)
 plt.yticks(size = 8)
 plt.ylabel('Proportion')
-plt.xlabel('Median Tract Income')
 plt.legend(names, loc='upper right')
 
-cross_tab.plot(kind='bar', stacked=True, color=colors, label=names, alpha = .6, figsize=(10,6))
-plt.title('Frequency of Average Lead Intervals by Tract Median Income')
-plt.xticks(size=7)
-plt.yticks(size = 8)
-plt.ylabel('Frequency')
-plt.xlabel('Median Tract Income')
-plt.legend(names, loc='upper right')
+plt.savefig("prop_plot2.png")
 
-plt.show() 
+
+# df = df[df['Tract Median Income'].notna()]
+# df['Tract Median Income'] = df['Tract Median Income'].apply(lambda x: round(x / 10000.0) * 10000.0)
+
+# cross_tab_prop = pd.crosstab(index=df['Tract Median Income'], columns=df['interval'], normalize='index')
+# cross_tab =  pd.crosstab(index=df['Tract Median Income'], columns=df['interval']) 
+# print(cross_tab)
+
+
+# cross_tab_prop.plot(kind='bar', stacked=True, color=colors, label=names, alpha = .6, figsize=(10,6))
+# plt.title('Proportion of Average Lead Intervals by Tract Median Income')
+# plt.xticks(size=7)
+# plt.yticks(size = 8)
+# plt.ylabel('Proportion')
+# plt.xlabel('Median Tract Income')
+# plt.legend(names, loc='upper right')
+
+# cross_tab.plot(kind='bar', stacked=True, color=colors, label=names, alpha = .6, figsize=(10,6))
+# plt.title('Frequency of Average Lead Intervals by Tract Median Income')
+# plt.xticks(size=7)
+# plt.yticks(size = 8)
+# plt.ylabel('Frequency')
+# plt.xlabel('Median Tract Income')
+# plt.legend(names, loc='upper right')
+
+# plt.show() 
